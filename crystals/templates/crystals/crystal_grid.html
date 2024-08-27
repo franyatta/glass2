@@ -1,0 +1,11 @@
+{% load static %}
+{% for crystal in crystals %}
+    <div class="crystal-box">
+        <h2>{{ crystal.name }}</h2>
+        <p>Age: {{ crystal.age }} hours</p>
+        <p>Location: {{ crystal.location }}</p>
+        <p>Status: {% if crystal.is_active %}Active{% else %}Inactive{% endif %}</p>
+    </div>
+{% empty %}
+    <p>No crystals found.</p>
+{% endfor %}

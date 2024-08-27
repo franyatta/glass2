@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Glass</title>
+    <link rel="stylesheet" href="{% static 'crystals/styles.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Slab:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="{% static 'crystals/js/filter.js' %}" defer></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <h1>Glass</h1>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="search-container">
+            <form id="crystal-filter-form" method="get" action="{% url 'crystal_list' %}">
+                <div class="search-wrapper">
+                    <input type="text" name="search" id="search-input" value="{{ search_query }}" placeholder="Search..">
+                    <button type="submit" class="search-button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                <div class="filter-options">
+                    <label><input type="checkbox" name="show_active" id="show-active" {% if show_active %}checked{% endif %}> Active</label>
+                    <label><input type="checkbox" name="show_inactive" id="show-inactive" {% if show_inactive %}checked{% endif %}> Inactive</label>
+                </div>
+            </form>
+        </div>
+        <a href="{% url 'add_crystal' %}" class="add-crystal-btn">Add New Glass</a>
+        <div id="crystal-grid" class="crystal-grid">
+            {% include 'crystals/crystal_grid.html' %}
+        </div>
+    </div>
+</body>
+</html>
